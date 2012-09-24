@@ -1,0 +1,14 @@
+@model EnumItem
+@{  
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.TypeId)
+@Html.HiddenFor(m => m.TypeCode)
+@Html.HiddenFor(m => m.ParentId)
+@Html.HiddenFor(m => m.ParentCode)
+@Html.nbTextBoxFor(m => m.EnumCode)
+@Html.nbTextBoxFor(m => m.EnumName)
+@Html.nbTextBoxFor(m => m.FirstChar)
+@Html.nbTextBoxFor(m => m.SeqNo)
+@Html.nbTextAreaFor(m => m.Remark)

@@ -1,0 +1,40 @@
+﻿@{ Layout = "~/Views/Shared/_LayoutTree.cshtml";
+   ViewBag.LeftTitle = "权限树";
+   ViewBag.RightTitle = "权限列表";
+}
+@section Left{
+    @(Html.nbTree(s =>
+    {
+        s.Action("Tree");
+        s.layoutH(30);
+        s.Width(200);
+        s.Grid();
+        s.Sync();
+    }))
+}
+@section Right{
+    @(Html.nbGridFor<Privilege>(s =>
+    {
+        s.layoutW(208);
+        s.layoutH(114);
+        s.Columns(c =>
+        {
+            c.Bind(m => m.Id).IsKey();
+            c.Bind(m => m.PrivilegeCode).AsQuery().Align(GridAlign.Left);
+            c.Bind(m => m.PrivilegeName).AsQuery().Align(GridAlign.Left);
+            c.Bind(m => m.PrivilegeTypeEnum).EnumKey<PrivilegeType>().Width(60);
+            c.Bind(m => m.Url).Align(GridAlign.Left).Width("auto");
+            c.Bind(m => m.SeqNo).Width(40);
+            c.Bind(m => m.UpdateUser).Width(60);
+            c.BindDateTime(m => m.UpdateDate);
+            c.BindTemplate()
+                .Template(Url.GridRowEditLink("编辑权限"))
+                .Template(Url.GridRowDeleteLink("PrivilegeName"));
+        });
+        s.Buttons(b =>
+        {
+            b.BindAddButton("新增权限").Action(Url.Action("Edit", new { parentId = "{TreeId}" }));
+            b.BindDeleteButton();
+        });
+    }))
+}

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.Css("main", "flexigrid", "form", "list", "tree", "dp")
+</head>
+<body style="overflow: hidden; background: #dfe8f6">
+    @Html.Js("jquery")
+    <div class="ui-layout-left">
+        <div class="header">
+            <span id="leftTitle" class="title">@ViewBag.LeftTitle</span>
+            @RenderSection("LeftButton", false)
+        </div>
+        @RenderSection("Left")
+    </div>
+    <div class="ui-layout-right">
+        <div class="header">
+            <span id="rightTitle" class="title">@ViewBag.RightTitle</span>
+        </div>
+        @RenderSection("Right")
+    </div>
+    @RenderBody()
+</body>
+</html>
+@Html.Js("common", "flexigrid", "tmpl", "list", "tree", "datepicker")
+@RenderSection("Script", false)

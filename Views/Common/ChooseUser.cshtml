@@ -1,0 +1,279 @@
+﻿@{
+    ViewBag.Title = "ChooseUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Css("list", "form", "tree")
+<style type="text/css">
+    body
+    {
+        background: #dfe8f6;
+        overflow: hidden;
+    }
+    .user .bbit-tree-node-icon
+    {
+        background: url("../../Content/themes/Blue/images/icons/user.png") no-repeat;
+    }
+    
+    .querytext
+    {
+        color: #ccc;
+    }
+    .querytext_onfocus
+    {
+        color: #555;
+    }
+    ul, li
+    {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    li
+    {
+        line-height: 150%;
+    }
+    div.usercontainer
+    {
+        padding: 0px 0px 0px 20px;
+        background: url("../../Content/themes/Blue/images/icons/user.png") no-repeat;
+    }
+    input.loading
+    {
+        background: url("../../Content/themes/Blue/images/icons/indicator.gif") no-repeat right center;
+    }
+    li .qusercheck
+    {
+        display: block;
+        float: right;
+        height: 16px;
+        width: 16px;
+    }
+    li.hover
+    {
+        background-color: #eee;
+        cursor: pointer;
+    }
+    li.checked .qusercheck
+    {
+        background: url("../../Content/themes/Blue/images/icons/qcheck.gif") no-repeat center center;
+    }
+</style>
+<div id="treecontainer" class="leftcontainer">
+    <div id="querypanel" class="titlepanel">
+        <input type="text" id="querytext" class="querytext" alt="请输入账号或姓名" />
+        <a href="javascript:void(0);" id="btnClearQuery" style="display: none"><span class="qdelete"
+            style="float: left; margin: 3px 0px 0px -18px; margin-left: -22px\9; height: 16px;">
+        </span></a><a href="javascript:void(0);" id="btnQuickQuery"><span class="uquery"
+            style="float: left; margin: 3px 0px 0px -22px; margin-left: -28px\9;">&nbsp;</span></a>
+    </div>
+    @(Html.nbTree(s =>
+    {
+        s.ID("usertree");
+        s.layoutH(63);
+        s.Action("OrgUserTree");
+        s.ShowCheck();
+        s.OnCheckboxClick("TreeNode_CheckedChange");
+    }))
+    <div id="userlist" style="display: none;">
+    </div>
+</div>
+<div id="ucontainer" class="rightcontainer" style="margin-left: 2px;">
+    <div class="titlepanel">
+        <span id="ustitle">已选择了 0 个用户</span><a href="javascript:void(0)" id="btntrash" class="linkbtn"
+            style="float: right; margin-right: 5px"><span class="trash">清空</span></a>
+    </div>
+    <div id="uslist">
+    </div>
+</div>
+<div class="buttonpanel">
+    <a href="javascript:;" class="button" id="btnOk"><span>确&#12288;定</span></a> <a href="javascript:;"
+        class="button" id="btnCancel"><span>取&#12288;消</span></a>
+</div>
+@Html.Js("common", "tree", "hash")
+<script type="text/javascript">
+    var userHash = new Hash();
+    $(document).ready(function () {
+        var maiheight = document.documentElement.clientHeight;
+        var mainWidth = document.documentElement.clientWidth;
+        $("#uslist").height(maiheight - 63);
+        $("#userlist").height(maiheight - 63);
+
+        var selectNodeIds = "";
+        if (parent && parent.getSelectNodeId) {
+            selectNodeIds = parent.getSelectNodeId();
+        }
+
+        // 快速检索
+        var $q = $("#querytext");
+        $q.focus(function (e) { // 1.当获得焦点时 隐藏水印
+            if (this.value == this.alt) {
+                this.value = "";
+                $(this).addClass("querytext_onfocus");
+            }
+        }).blur(function (e) { // 2.当失去焦点时 显示水印
+            if (this.value == "") {
+                this.value = this.alt;
+                $(this).removeClass("querytext_onfocus");
+            }
+        }).keypress(function (e) { // 3.在输入框中按Enter同点击查询按钮
+            if (e.keyCode == 13) {
+                quickQuery();
+            }
+        }).val($q.attr("alt"));
+        // 4.点击快速检索按钮查询数据
+        $("#btnQuickQuery").click(quickQuery);
+        // 5.点击清空快速检索按钮的查询所有数据
+        $("#btnClearQuery").click(function (e) {
+            $("#querytext").val("");
+            $("#userlist").hide();
+            $("#usertree").show();
+            $("#btnQuickQuery").show();
+            $(this).hide();
+        });
+        function quickQuery() {
+            var qtext = $q.val();
+            if (qtext != $q.attr("alt")) //如果有内容
+            {
+                // 增加加载中的效果
+                $q.addClass("loading");
+                //发起查询请求
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("QueryUser")',
+                    data: { keywords: qtext },
+                    dataType: "json",
+                    success: function (data) {
+                        var html = [];
+                        html.push("<ul>");
+                        if (data) {
+                            for (var i = 0, l = data.length; i < l; i++) {
+                                html.push("<li id='qli_", data[i].Id, "' title='", data[i].UserName, "' ", userHash.hasItem(data[i].Id) ? "class='checked'" : "", "><div class=\"usercontainer\" style=\"margin:1px 3px 1px 6px;\"><em class=\"user\" style='float:left;'>", data[i].UserName, "</em><span class='qusercheck'></span><div style='clear:both;'></div></div></li>");
+                            }
+                        }
+                        html.push("</ul>");
+                        $("#userlist").html(html.join("")).show();
+                        $("#userlist li").each(function (i) {
+                            $(this).hover(function (e) { $(this).addClass("hover"); }, function (e) { $(this).removeClass("hover"); })
+                                .click(function (e) {
+                                    var me = $(this);
+                                    var id = this.id.substr(4);
+                                    var text = me.attr("title");
+                                    if (me.hasClass("checked")) {
+                                        remove(id);
+                                        me.removeClass("checked");
+                                    }
+                                    else {
+                                        additem(id, text);
+                                        me.addClass("checked");
+                                    }
+                                });
+                        });
+                        // 显示快速查询的清空按钮
+                        $("#btnClearQuery").show();
+                        // 隐藏组织机构用户树
+                        $("#usertree").hide();
+                        // 隐藏快速查询的查询按钮
+                        $("#btnQuickQuery").hide();
+                        // 移除加载中的效果
+                        $q.removeClass("loading");
+                    }
+                });      //end if $.ajax
+            }
+        }
+        // 清空选中用户
+        $("#btntrash").click(function (e) {
+            var usul = $("#uslist>ul");
+            if (usul.length > 0) {
+                usul.remove();
+            }
+            $("#usertree").unCheckAll();
+            var checkli = $("#userlist li.checked");
+            if (checkli.length > 0) {
+                checkli.each(function (e) {
+                    $(this).removeClass("checked");
+                });
+            }
+            //清空
+            userHash.clear();
+            resettitle();
+        });
+
+        function Ok() {
+            var users = [];
+            for (var a in userHash.items) {
+                users.push(a);
+            }
+            CloseModalDialog(null, true, users);
+        }
+
+        function Cancel() {
+            CloseModalDialog(null, false);
+        }
+        $("#btnOk").click(Ok);
+        $("#btnCancel").click(Cancel);
+
+    });            // end of ready
+    function resettitle() {
+        $("#ustitle").text(StrFormatNoEncode("已选择了 {0} 个用户", [userHash.length]));
+    }
+    function removeUser(obj, usercode) {
+        if (userHash.hasItem(usercode)) {
+            userHash.removeItem(usercode);
+            //操作dom;
+            $("#li_" + usercode).remove();
+            var qu = $("#qli_" + usercode);
+            if (qu.length > 0) {
+                qu.removeClass("checked");
+            }
+            //取消树的选中状态
+            $("#usertree").setItemsCheckState(usercode, false, false);
+            resettitle();
+        }
+    }
+
+
+    function TreeNode_CheckedChange(node, checkstate) {
+        if (node.classes == "user") //选中了用户
+        {
+            if (checkstate == 1) //选中
+            {
+                additem(node.id, node.text);
+            }
+            else if (checkstate == 0)//取消选中
+            {
+                remove(node.id);
+            }
+        }
+
+    }
+
+    // 选中一个用户
+    function additem(usercode, usertext) {
+        var usul = $("#uslist>ul");
+        if (usul.length == 0) {
+            usul = $("<ul></ul>").appendTo($("#uslist"));
+        }
+        if (!userHash.hasItem(usercode)) {
+            userHash.setItem(usercode, usertext);
+            //操作dom;
+            usul.append(StrFormatNoEncode("<li id='li_{0}'><div class=\"usercontainer\" style=\"margin:1px 3px 1px 6px;\"><em class=\"user\">{1}</em><a href=\"javascript:void(0);\"  onclick=\"javascript:removeUser(this,'{0}');\" style=\"margin:-left:5px;float:right;\"><span class='sdelete' style=\"display:block;\">&nbsp;</span></a></div></li>", [usercode, usertext]));
+            resettitle()
+
+            //设置树的选中状态
+            $("#usertree").setItemsCheckState(usercode, true, false);
+        }
+    }
+
+    // 删除一个用户
+    function remove(usercode) {
+        if (userHash.hasItem(usercode)) {
+            userHash.removeItem(usercode)
+            //操作dom;
+            $("#li_" + usercode).remove();
+            resettitle()
+
+            //取消树的选中状态
+            $("#usertree").setItemsCheckState(usercode, false, false);
+        }
+    }
+</script>

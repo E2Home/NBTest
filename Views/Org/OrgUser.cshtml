@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+}
+@(Html.nbGridFor<UserInfo>(s =>
+{
+    s.Action(Url.Action("OrgUser", new { orgId = ViewBag.OrgId }));
+    s.layoutH(86);
+    s.Columns(c =>
+    {
+        c.Bind(m => m.Id).IsKey();
+        c.Bind(m => m.UserCode).AsQuery().Align(GridAlign.Left);
+        c.Bind(m => m.UserName).AsQuery().Align(GridAlign.Left);
+        c.Bind(m => m.AccountState).EnumKey("AccountState").Width(60);
+        c.Bind(m => m.SeqNo).Width(40);
+        c.Bind(m => m.UpdateUser).Width(60);
+        c.BindDateTime(m => m.UpdateDate);
+    });
+    s.Buttons(b =>
+    {
+        b.BindAddButton("新建用户").Action(Url.Action("Edit", "User", new { orgId = @ViewBag.OrgId }));
+    });
+}))

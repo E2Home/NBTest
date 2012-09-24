@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+}
+@(Html.nbGridFor<EnumType>(s =>
+{
+    s.Action("EnumTypeList");
+    s.Columns(c =>
+    {
+        c.Bind(m => m.Id).IsKey();
+        c.Bind(m => m.TypeCode).Align(GridAlign.Left).AsQuery();
+        c.Bind(m => m.TypeName).Align(GridAlign.Left).AsQuery();
+        c.Bind(m => m.SeqNo).Width(40);
+        c.Bind(m => m.Remark).Align(GridAlign.Left).Width("auto");
+        c.Bind(m => m.UpdateUser).Width(60);
+        c.BindDateTime(m => m.UpdateDate);
+        c.BindTemplate()
+            .Template(Url.GridRowEditLink("编辑枚举类型", "EditEnumType"))
+            .Template(Url.GridRowDeleteLink("TypeName", "DeleteEnumType"));
+    });
+    s.Buttons(b =>
+    {
+        b.BindAddButton("新建枚举类型").Action(Url.Action("EditEnumType"));
+        b.BindDeleteButton("DeleteEnumTypes");
+    });
+}))

@@ -1,0 +1,23 @@
+@{  
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+}
+@(Html.GridFor<EnumItem>(s =>
+{
+    s.Action("List");
+    s.Columns(c =>
+    {
+        c.Bind(m => m.Id).IsKey();
+        c.Bind(m => m.EnumCode).Width(80).AsQuery();
+        c.Bind(m => m.EnumName).AsQuery();
+        c.Bind(m => m.FirstChar).Width(80).AsQuery();
+        c.Bind(m => m.SeqNo).Width(40);
+        c.Bind(m => m.Remark).Width("auto");
+        c.BindTemplate()
+            .Template(Url.GridRowEditLink())
+            .Template(Url.GridRowDeleteLink("Id"));
+    });
+    s.Buttons(b =>
+    {
+        b.Bind(GridButtonType.Add);
+    });
+}))

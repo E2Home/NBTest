@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+}
+@(Html.nbGridFor<Role>(s =>
+{
+    s.Action("List");
+    s.Columns(c =>
+    {
+        c.Bind(m => m.Id).IsKey();
+        c.Bind(m => m.RoleCode).AsQuery().Align(GridAlign.Left);
+        c.Bind(m => m.RoleName).AsQuery().Align(GridAlign.Left);
+        c.Bind(m => m.Remark).Width("auto").Align(GridAlign.Left);
+        c.Bind(e => e.SeqNo).Width(40);
+        c.Bind(m => m.UpdateUser).Width(60);
+        c.BindDateTime(m => m.UpdateDate);
+        c.BindTemplate(240)
+            .Template(Url.GridRowEditLink("编辑角色"))
+            .Template(Url.GridRowDeleteLink("RoleName"))
+            .Template(@<a href="@Url.OpenDialog(Url.Action("RoleUser", new { roleId = "${Id}" }), "角色（${RoleName}）的成员列表")" class="imgbtn2"><span
+                class="user">成员</span></a>)
+            .Template(@<a href="@Url.OpenDialog(Url.Action("RolePrivilege", new { roleId = "${Id}" }), "对角色（${RoleName}）授权", new { width = 300, height = 400, type = 2 })" class="imgbtn2"><span
+                class="authorization">授权</span></a>);
+    });
+    s.Buttons(b =>
+    {
+        b.BindAddButton("新增角色");
+        b.BindDeleteButton();
+    });
+}))

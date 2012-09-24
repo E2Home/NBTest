@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.Css("main", "flexigrid", "form", "list", "dp")
+</head>
+<body>
+    @Html.Js("jquery")
+    @using (Html.nbAjaxBeginForm((string)ViewBag.SaveAction))
+    { 
+        <div class="pageFormContent">
+            @RenderSection("Up")
+        </div>
+        <div class="clear">
+        </div>
+        <!-- 子表 --> 
+        <div class="pageFormDetailList">
+            @RenderSection("Down")
+        </div>
+    }
+    @Html.nbFormBar()
+    @RenderBody()
+</body>
+</html>
+@Html.Js("common", "validate", "form", "datepicker", "flexigrid", "tmpl", "list", "json2")
+@RenderSection("Script", false)

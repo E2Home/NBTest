@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTree.cshtml";
+    ViewBag.LeftTitle = "组织机构";
+}
+@section Left{
+    @(Html.nbTree(s =>
+    {
+        s.Action("Tree");
+        s.layoutH(30);
+        s.Width(200);
+        s.Grid();
+        s.Sync();
+    }))
+}
+@section Right{
+    @(Html.nbGridFor<Organization>(s =>
+    {
+        s.layoutW(208);
+        s.layoutH(114);
+        s.Columns(c =>
+        {
+            c.Bind(m => m.Id).IsKey();
+            c.Bind(m => m.OrgCode).Align(GridAlign.Left).AsQuery();
+            c.Bind(m => m.OrgName).Width(200).Align(GridAlign.Left).AsQuery();
+            c.Bind(m => m.OrgType).EnumKey<OrgType>().Width(60);
+            c.Bind(m => m.SeqNo).Width(40);
+            c.Bind(m => m.UpdateUser).Width(60);
+            c.BindDateTime(m => m.UpdateDate);
+            c.BindTemplate(180)
+                .Template(Url.GridRowEditLink("编辑部门"))
+                .Template(Url.GridRowDeleteLink("OrgName"))
+                .Template(@<a class="imgbtn2" href="@Url.OpenDialog(Url.Action("OrgUser", new { orgId = "${Id}" }), "用户列表（${OrgName}）")"><span
+                    class="setuser">成员</span></a>);
+        });
+        s.Buttons(b =>
+        {
+            b.BindAddButton("新建部门").Action(Url.Action("Edit", new { parentId = "{TreeId}" }));
+            b.BindDeleteButton();
+        });
+    }))
+}

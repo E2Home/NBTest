@@ -1,0 +1,85 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>授权</title>
+    @Html.Css("main", "form", "tree")
+    <style type="text/css">
+        .ctree
+        {
+            overflow: hidden;
+            border: solid 1px #99bbe8;
+            margin: 2px 0px 2px 2px;
+            background-color: #fff;
+        }
+        body
+        {
+            padding: 0px;
+            overflow: hidden;
+            background-color: #DFE8F6;
+        }
+        .titlepanel
+        {
+            color: #15428b;
+            font-weight: bold;
+            padding-left: 16px;
+        }
+    </style>
+</head>
+<body>
+    @Html.Js("jquery")
+    <div id="treecontainer" class="ctree">
+        <div id="querypanel" class="titlepanel">
+            请展开权限树进行授权
+        </div>
+        <div id="usertree" style="overflow: auto;">
+        </div>
+        @(Html.nbTree(s =>
+        {
+            s.ID("usertree");
+            s.layoutH(63);
+            s.Action(Url.Action("GetRolePrivileges", new { roleId = @ViewBag.RoleId }));
+            s.ShowCheck();
+            s.CascadeCheck();
+        }))
+    </div>
+    <div style="position: absolute; left: 32%;">
+        <a id="btnOk" class="button" href="javascript:void(0);"><span>确 定</span></a> <a id="btnCancel"
+            class="button" href="javascript:void(0);"><span>取 消</span></a>
+    </div>
+    <div>
+        <input id="hdaddids" type="hidden" value="" />
+        <input id="hdminusids" type="hidden" value="" />
+    </div>
+    @Html.Js("common", "tree")
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            function Ok() {
+                var ids = $("#usertree").getTSVs();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SetRolePrivilege", new { roleId = @ViewBag.RoleId })',
+                    data: { ids: ids.join(",") },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.IsSuccess) {
+                            CloseModalDialog(null, true);
+                        }
+                        else {
+                            showErrorTip(data.Msg, { left: 50, top: 1 }, true, 5000);
+                        }
+                    }
+                });
+            }
+            function Cancel() {
+                CloseModalDialog(null, false);
+            }
+            $("#btnOk").click(Ok);
+            $("#btnCancel").click(Cancel);
+        });       
+                     
+    </script>
+</body>
+</html>

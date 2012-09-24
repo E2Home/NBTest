@@ -1,0 +1,41 @@
+﻿@model UserInfo
+@{
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.OrgId)
+@Html.HiddenFor(m => m.OrgCode)
+@Html.nbTextBoxFor(m => m.UserName).AjaxTodo(Url.Action("GetDefaultUserCode"), "SetUserCode").Required()
+@Html.nbButtonEditFor(m => m.OrgName, "MoveOrg", "group")
+@Html.nbTextBoxFor(m => m.UserCode).Remote(@Url.Action("ValidUserCode", new { Id = Model.Id })).Required()
+@Html.nbTextBoxFor(m => m.SeqNo).Required().Number()
+@if (string.IsNullOrEmpty(Model.Password))
+{
+    @Html.nbPasswordFor(m => m.Password).Required()
+}
+@Html.nbEnumRadioListFor(m => m.AccountStateEnum)
+@Html.nbTextAreaFor(m => m.Remark)
+<script type="text/javascript">
+    function MoveOrg() {
+        // 记录当前选择的值
+        share.data("selectNodeId", $("#OrgId").val());
+
+        // 弹出选择界面
+        OpenModalDialog('@Url.Action("SetOrg", "Org")', {
+            width: 240,
+            height: 460,
+            type: 2,
+            onclose: function (group) {
+                if (group && group.length > 0) {
+                    $("#OrgCode").val(group[0].value);
+                    $("#OrgName").val(group[0].text);
+                    $("#OrgId").val(group[0].id);
+                }
+            }
+        });
+    }
+    function SetUserCode(data) {
+        if ($("#UserCode").val() == "")
+            $("#UserCode").val(data);
+    }
+</script>

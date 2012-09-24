@@ -1,0 +1,13 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.Css("main", "flexigrid", "form", "list", "dp")
+</head>
+<body>
+    @Html.Js("jquery")
+    @RenderBody()
+</body>
+</html>
+@Html.Js("common", "flexigrid", "tmpl", "list", "datepicker")
+@RenderSection("Script", false)

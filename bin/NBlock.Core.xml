@@ -1,0 +1,1032 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NBlock.Core</name>
+    </assembly>
+    <members>
+        <member name="T:NBlock.Core.ORM.ModelExtensions">
+            <summary>
+            Model实体的扩展类和公共方法
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.ORM.ModelExtensions.SetFullPath(NBlock.Core.ORM.ITreeModel,System.Data.Entity.DbContext)">
+            <summary>
+            设置全路径
+            </summary>
+            <param name="tree">保存的实体</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.ModelExtensions.SetAuditable(NBlock.Core.ORM.IAuditable,System.Data.EntityState)">
+            <summary>
+            设置创建人、创建时间、最后更新人、最后更新时间等信息
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.ModelConstant">
+            <summary>
+            实体级别的常量定义
+            </summary>
+        </member>
+        <member name="F:NBlock.Core.ORM.ModelConstant.FULL_PATH_SEPARATOR">
+            <summary>
+            全路径的分隔符
+            </summary>
+        </member>
+        <member name="F:NBlock.Core.ORM.ModelConstant.MORE_SEPARATOR">
+            <summary>
+            多个值之间的分隔符
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.IPrivilege">
+            <summary>
+            权限信息
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IPrivilege.Id">
+            <summary>
+            权限Id
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IPrivilege.Code">
+            <summary>
+            权限标识
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IPrivilege.Name">
+            <summary>
+            权限名称
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IPrivilege.ParentId">
+            <summary>
+            父权限Id
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IPrivilege.ParentCode">
+            <summary>
+            父权限标识
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IPrivilege.Url">
+            <summary>
+            访问路径
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.App_Start.NinjectWebCommon.Start">
+            <summary>
+            Starts the application
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.App_Start.NinjectWebCommon.Stop">
+            <summary>
+            Stops the application.
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.App_Start.NinjectWebCommon.CreateKernel">
+            <summary>
+            Creates the kernel that will manage your application.
+            </summary>
+            <returns>The created kernel.</returns>
+        </member>
+        <member name="M:NBlock.Core.App_Start.NinjectWebCommon.RegisterServices(Ninject.IKernel)">
+            <summary>
+            Load your modules or register your services here!
+            </summary>
+            <param name="kernel">The kernel.</param>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.GetService``1(System.Web.Mvc.IDependencyResolver,System.String)">
+            <summary>
+            获取服务
+            </summary>
+            <typeparam name="T">服务类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.GetServices``1(System.Web.Mvc.IDependencyResolver,System.String)">
+            <summary>
+            获取所有指定名称的所有服务
+            </summary>
+            <typeparam name="T">服务类型</typeparam>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.RegisterDbContext``1(System.Web.Mvc.IDependencyResolver,System.String)">
+            <summary>
+            注册数据库上下文
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="kernel"></param>
+            <param name="connName"></param>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.RegisterDbContext``1(System.Web.Mvc.IDependencyResolver,System.String,NBlock.Core.Ioc.IocScope)">
+            <summary>
+            注册数据库上下文
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="kernel"></param>
+            <param name="connName"></param>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.RegisterDbContext``1(System.Web.Mvc.IDependencyResolver,Ninject.IKernel,System.String)">
+            <summary>
+            注册数据库上下文
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="kernel"></param>
+            <param name="connName"></param>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.RegisterDbContext``1(System.Web.Mvc.IDependencyResolver,Ninject.IKernel,System.String,NBlock.Core.Ioc.IocScope)">
+            <summary>
+            注册数据库上下文
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="kernel"></param>
+            <param name="connName"></param>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.RegisterService``2(System.Web.Mvc.IDependencyResolver,NBlock.Core.Ioc.IocScope)">
+            <summary>
+            注册服务
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <param name="resolver"></param>
+            <param name="scope"></param>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.RegisterService``2(System.Web.Mvc.IDependencyResolver,Ninject.IKernel,NBlock.Core.Ioc.IocScope)">
+            <summary>
+            注册服务
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.RegisterService(System.Web.Mvc.IDependencyResolver,System.Type,System.Type,NBlock.Core.Ioc.IocScope)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="resolver"></param>
+            <param name="interfaceType"></param>
+            <param name="InstanceType"></param>
+            <param name="scope"></param>
+        </member>
+        <member name="M:NBlock.Core.Ioc.IocExtensions.RegisterService(System.Web.Mvc.IDependencyResolver,Ninject.IKernel,System.Type,System.Type,NBlock.Core.Ioc.IocScope)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="resolver"></param>
+            <param name="interfaceType"></param>
+            <param name="InstanceType"></param>
+            <param name="kernel"></param>
+            <param name="scope"></param>
+        </member>
+        <member name="T:NBlock.Core.IEnumService">
+            <summary>
+            枚举服务接口，用于获取下拉框的数据源
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.IEnumService.GetEnumDataSource(System.String)">
+            <summary>
+            获取指定枚举Key的下拉枚举数据源
+            </summary>
+            <param name="EnumKey">枚举Key</param>
+            <returns>下拉框数据源</returns>
+        </member>
+        <member name="M:NBlock.Core.IEnumService.GetEnumText(System.String,System.String)">
+            <summary>
+            获取指定枚举项值的枚举项文本
+            </summary>
+            <param name="enumKey">枚举Key</param>
+            <param name="value">枚举项值</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.IEnumService.GetEnumValue(System.String,System.String)">
+            <summary>
+            获取指定枚举项文本的枚举项值
+            </summary>
+            <param name="enumKey">枚举Key</param>
+            <param name="text">枚举项文本</param>
+            <returns></returns>
+        </member>
+        <member name="T:NBlock.Core.ORM.IAuditable">
+            <summary>
+            可审核的模型对象接口
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.IAuditable.CreateDate">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.IAuditable.CreateUserId">
+            <summary>
+            创建人Id
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.IAuditable.CreateUser">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.IAuditable.UpdateDate">
+            <summary>
+            最后更新时间
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.IAuditable.UpdateUserId">
+            <summary>
+            最后更新人Id
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.IAuditable.UpdateUser">
+            <summary>
+            最后更新人
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.Log.WebLogWriter">
+            <summary>
+            应用程序日志纪录类，
+            当应用程序发生异常的时候向日志文件和应用程序日志写入纪录
+            </summary>
+        </member>
+        <member name="F:NBlock.Core.Log.WebLogWriter.TRACE_FILE">
+            <summary>
+            页面访问跟踪文件
+            </summary>
+        </member>
+        <member name="F:NBlock.Core.Log.WebLogWriter.EXCEPTION_LOG_FILE">
+            <summary>
+            异常日志文件
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLogWriter.#ctor">
+            <summary>
+            初始化日至写入器
+            异常：InvalidFileOperationException
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLogWriter.WriteExceptionLog(System.String)">
+            <summary>
+            写入应用程序异常日志
+            异常：InvalidFileOperationException
+            </summary>
+            <param name="strMessage">要写入的日志信息</param>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLogWriter.WriteFileLog(System.String)">
+            <summary>
+            asp.net页面访问日志，登陆日志等
+            </summary>
+            <param name="strMessage">要写入的日志信息</param>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLogWriter.OpenLogWriter">
+            <summary>
+            打开日志的文件流
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLogWriter.OpenExpWriter">
+            <summary>
+            打开异常的文件流
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLogWriter.GetRandomFileName(System.String)">
+            <summary>
+            获取日期的随机文件名
+            </summary>
+            <param name="FileName">文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLogWriter.GetCurrentDir">
+            <summary>
+            读取当前程序集所在的路径
+            </summary>
+            <returns>程序集所在路径</returns>
+        </member>
+        <member name="T:NBlock.Core.Ioc.IocScope">
+            <summary>
+            Ioc的范围域
+            </summary>
+        </member>
+        <member name="F:NBlock.Core.Ioc.IocScope.Singleton">
+            <summary>
+            全局单例
+            </summary>
+        </member>
+        <member name="F:NBlock.Core.Ioc.IocScope.Request">
+            <summary>
+            每次请求单例
+            </summary>
+        </member>
+        <member name="F:NBlock.Core.Ioc.IocScope.Thread">
+            <summary>
+            线程单例
+            </summary>
+        </member>
+        <member name="F:NBlock.Core.Ioc.IocScope.Transient">
+            <summary>
+            每次都创建
+            </summary>
+        </member>
+        <member name="F:NBlock.Core.Ioc.IocScope.Default">
+            <summary>
+            默认的
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.IRepository`1">
+            <summary>
+            数据仓储模式（Repository）的接口，一种用来封装存储，读取和查找行为的机制，它模拟了一个对象集合
+            </summary>
+            <typeparam name="T">实体数据</typeparam>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.Insert(`0)">
+            <summary>
+            添加实体数据
+            </summary>
+            <param name="entity">实体数据</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.Update(`0)">
+            <summary>
+            更新实体数据
+            </summary>
+            <param name="entity">实体数据</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.Save(`0)">
+            <summary>
+            根据指定条件来保存实体数据
+            </summary>
+            <param name="entity">实体数据</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.Commit">
+            <summary>
+            提交事务
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.Delete(System.String)">
+            <summary>
+            删除指定Id的实体数据
+            </summary>
+            <param name="Id">实体Id</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.Delete(`0)">
+            <summary>
+            删除实体数据
+            </summary>
+            <param name="entity">实体数据</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.DeleteAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            批量删除指定过滤表达式的实体数据列表
+            </summary>
+            <param name="predicate">过滤表达式</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.DeleteAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量删除实体数据
+            </summary>
+            <param name="entities">实体数据列表</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.Find(System.String,System.Boolean)">
+            <summary>
+            获得指定Id的实体数据
+            </summary>
+            <param name="Id">实体Id</param>
+            <param name="isFromDB">是否强制从数据库中获取，而忽略内存</param>
+            <returns>数据实体</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取指定指定过滤表达式的单个实体数据
+            </summary>
+            <param name="predicate">过滤表达式</param>
+            <returns>数据实体</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.FindAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+            <summary>
+            获取指定指定过滤表达式的实体数据列表
+            </summary>
+            <param name="predicate">过滤表达式</param>
+            <param name="isTracking">是否跟踪，默认不跟踪实体状态</param>
+            <returns>数据实体列表</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.FindAllFormLocal(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            从内存数据库中获取指定过滤表达式的实体数据列表
+            适用场景：在复杂逻辑中，先插入或更新数据，然后再取出数据进行其他操作
+                 如：保持WBS及人员信息，然后再获取人员信息进行推送任务
+            </summary>
+            <param name="predicate">过滤表达式</param>
+            <returns>数据实体列表</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.GetPageable(NBlock.Core.ORM.PageInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},NBlock.Core.ORM.SearchCondition,System.Action{System.Linq.IQueryable{`0}})">
+            <summary>
+            获取指定搜索条件的数据分页实体
+            </summary>
+            <param name="pageInfo">分页信息</param>
+            <param name="predicate">编码方式的查询逻辑</param>
+            <param name="where">前台控件的值转化的查询条件</param>
+            <param name="summaryAction">自定义汇总的逻辑</param>
+            <returns>数据分页实体</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.GetPageable(NBlock.Core.ORM.PageInfo,NBlock.Core.ORM.SearchCondition,System.Action{System.Linq.IQueryable{`0}})">
+            <summary>
+            获取指定搜索条件的数据分页实体
+            </summary>
+            <param name="pageInfo">分页信息</param>
+            <param name="where">前台控件的值转化的查询条件</param>
+            <param name="summaryAction">自定义汇总的逻辑</param>
+            <returns>数据分页实体</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.IRepository`1.IsExist(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获得指定条件的记录是否存在
+            </summary>
+            <param name="predicate">判断条件</param>
+            <returns>数据实体</returns>
+        </member>
+        <member name="T:NBlock.Core.ORM.IModel">
+            <summary>
+            实体模型的默认接口，封装了主键Id，用于Save操作
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.IModel.Id">
+            <summary>
+            实体Id
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.IFilterTranslator">
+            <summary>
+            将过滤规则 翻译成 QueryModel Labdma语句,并生成相应的参数列表
+            如果遇到{CurrentUserID}这种，翻译成对应的参数
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.StringSummaryExtensions">
+            <summary>
+            Dynamic LINQ expression for OfType and Sum
+            网址：http://social.msdn.microsoft.com/Forums/ta/linqtosql/thread/fbfa7e59-e97f-4d34-9810-5dbf6b8f444c
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.ORM.StringSummaryExtensions.Summary(System.Linq.IQueryable,System.String,System.String)">
+            <summary>
+            汇总方法的扩展，支持Sum、Average、Min、Max等方法
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="source"></param>
+            <param name="method">方法，支持Sum、Average、Min、Max等</param>
+            <param name="member">成员（可以理解为实体的属性或表的字段）</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.StringSummaryExtensions.Summary``1(System.Linq.IQueryable{``0},System.String,System.String)">
+            <summary>
+            汇总方法的扩展，支持Sum、Average、Min、Max等方法
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="source"></param>
+            <param name="method">方法，支持Sum、Average、Min、Max等</param>
+            <param name="member">成员（可以理解为实体的属性或表的字段）</param>
+            <returns></returns>
+        </member>
+        <member name="T:NBlock.Core.ORM.Pageable`1">
+            <summary>
+            可分页的对象
+            </summary>
+            <typeparam name="T">数据实体</typeparam>
+        </member>
+        <member name="P:NBlock.Core.ORM.Pageable`1.Page">
+            <summary>
+            分页后的数据
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.Pageable`1.Total">
+            <summary>
+            记录总数
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.Pageable`1.Summary">
+            <summary>
+            汇总数据
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.PredicateBuilder">
+            <summary>
+            LINQ to Entities: Combining Predicates
+            参考网址：http://blogs.msdn.com/b/meek/archive/2008/05/02/linq-to-entities-combining-predicates.aspx
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.ORM.PredicateBuilder.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            查询条件相加（并且关系）
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.PredicateBuilder.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            查询条件相加（或者关系）
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.PredicateBuilder.Compose``1(System.Linq.Expressions.Expression{``0},System.Linq.Expressions.Expression{``0},System.Func{System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression})">
+            <summary>
+            合并两个表达式树
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NBlock.Core.IUserService">
+            <summary>
+            用户服务接口
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.IUserService.GetUserInfo(System.String)">
+            <summary>
+            获取指定用户Id的用户信息
+            </summary>
+            <param name="UserId">用户Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.IUserService.HasRight(System.String,System.String)">
+            <summary>
+            判断用户是否拥有指定权限
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="privilegeId">权限Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.IUserService.IsInRole(System.String,System.String)">
+            <summary>
+            判断用户是否在指定角色中
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="roleCode">角色标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.IUserService.ValidUser(System.String,System.String)">
+            <summary>
+            校验用户
+            </summary>
+            <param name="userCode">用户标识</param>
+            <param name="password">用户密码</param>
+            <returns>用户Id，如果为空，则验证不通过</returns>
+        </member>
+        <member name="T:NBlock.Core.IUserInfo">
+            <summary>
+            用户基本信息
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IUserInfo.UserId">
+            <summary>
+            用户标识，一般为登录账号
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IUserInfo.UserName">
+            <summary>
+            用户全名
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IUserInfo.OrgCode">
+            <summary>
+            所属机构代码,一般为部门Code
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IUserInfo.OrgName">
+            <summary>
+            所属机构名称,一般为部门名称
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IUserInfo.UnitCode">
+            <summary>
+            所属单位Code
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.IUserInfo.UnitName">
+            <summary>
+            所属单位的名称
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.EF.DbContextBase">
+            <summary>
+            DbContext的基类，封装了IAuditable的信息
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.Log.WebLog">
+            <summary>
+            Web应用日志类
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLog.WriteAction(System.String,System.String)">
+            <summary>
+            记录动作
+            </summary>
+            <param name="actionName">动作名称</param>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLog.WriteException(System.Exception)">
+            <summary>
+            记录异常
+            </summary>
+            <param name="actionName">异常</param>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLog.GetUserName">
+            <summary>
+            获取当前用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.Log.WebLog.GetContextString">
+            <summary>
+            获取请求上下文的信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFHelper.Commit(NBlock.Core.ORM.EF.DbContextBase)">
+            <summary>
+            提交指定数据库的事务
+            </summary>
+            <param name="db">数据库上下文</param>
+        </member>
+        <member name="T:NBlock.Core.HZ2PY">
+            <summary>
+            汉字转拼音
+            2011-5-18  by rp
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.HZ2PY.GetFirstPY(System.String)">
+            <summary> 
+            汉字转首字母拼音缩写 
+            </summary> 
+            <param name="Input">要转换的汉字字符串</param> 
+            <returns>首字母拼音缩写</returns> 
+        </member>
+        <member name="M:NBlock.Core.HZ2PY.GetPYChar(System.String)">
+            <summary> 
+            取单个字符的拼音声母 
+            </summary> 
+            <param name="c">要转换的单个汉字</param> 
+            <returns>拼音声母</returns> 
+        </member>
+        <member name="M:NBlock.Core.HZ2PY.ConvertPY(System.String)">
+            <summary>
+            把汉字转换成拼音(全拼)
+            </summary>
+            <param name="hzString">汉字字符串</param>
+            <returns>转换后的拼音(全拼)字符串</returns>
+        </member>
+        <member name="T:NBlock.Core.ORM.SearchCondition">
+            <summary>
+            查询条件
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.SearchCondition.Items">
+            <summary>
+            查询条件项集合
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.SearchConditionItem">
+            <summary>
+            查询条件项
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.SearchConditionItem.Field">
+            <summary>
+            字段属性
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.SearchConditionItem.OP">
+            <summary>
+            查询方式（Equal、Like、In等）
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.SearchConditionItem.Value">
+            <summary>
+            允许值
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.SearchConditionItem.OrGroup">
+            <summary>
+            如果使用Or组合，则此组组合为一个Or序列
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.ITreeModel">
+            <summary>
+            树状结构的实体模型饿接口
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.ITreeModel.FullPath">
+            <summary>
+            全路径，包含自己节点，用逗号隔开。
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.ITreeModel.ParentId">
+            <summary>
+            父节点的ID
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.ORMException">
+            <summary>
+            实体框架组件引发的异常
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.ORM.ORMException.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.ORM.ORMException.#ctor(System.String)">
+            <summary>
+            异常构造函数
+            </summary>
+            <param name="message">异常的消息</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.ORMException.#ctor(System.String,System.Exception)">
+            <summary>
+            异常构造函数
+            </summary>
+            <param name="message">异常的消息</param>
+            <param name="inner">内部的异常</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.ORMException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            异常构造函数
+            </summary>
+            <param name="info">存有有关所引发异常的序列化的对象数据</param>
+            <param name="context">包含有关源或目标的上下文信息</param>
+        </member>
+        <member name="T:NBlock.Core.ORM.EF.EFRepository`1">
+            <summary>
+            用Entity Framework实现仓储模式（Repository）的基类
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.#ctor(System.String)">
+            <summary>
+            构造函数，参数从Ioc获取或者直接传参数
+            </summary>
+            <param name="connName">数据库连接字符串名称</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.Insert(`0)">
+            <summary>
+            添加实体数据
+            </summary>
+            <param name="entity">实体数据</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.Update(`0)">
+            <summary>
+            更新实体数据
+            </summary>
+            <param name="entity">实体数据</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.Save(`0)">
+            <summary>
+            保存实体数据，只对继承IModel接口的实体有效。
+            没有继承IModel接口的实体需要调用Insert和Update来更新数据
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.Commit">
+            <summary>
+            提交事务
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.Delete(System.String)">
+            <summary>
+            删除指定Id的实体数据
+            </summary>
+            <param name="Id">实体Id</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.Delete(`0)">
+            <summary>
+            删除实体数据
+            </summary>
+            <param name="entity">实体数据</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.DeleteAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量删除实体数据
+            </summary>
+            <param name="entities">实体数据列表</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.DeleteAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            批量删除指定过滤表达式的实体数据列表
+            </summary>
+            <param name="predicate">过滤表达式</param>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.Find(System.String,System.Boolean)">
+            <summary>
+            获得指定Id的实体数据
+            </summary>
+            <param name="Id">实体Id</param>
+            <param name="isFromDB">是否强制从数据库中获取，而忽略内存</param>
+            <returns>数据实体</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取指定指定过滤表达式的单个实体数据
+            </summary>
+            <param name="predicate">过滤表达式</param>
+            <returns>数据实体</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.FindAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+            <summary>
+            获取指定指定过滤表达式的实体数据列表
+            </summary>
+            <param name="predicate">过滤表达式</param>
+            <param name="isTracking">是否跟踪，默认不跟踪实体状态</param>
+            <returns>数据实体列表</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.FindAllFormLocal(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            从内存数据库中获取指定过滤表达式的实体数据列表
+            适用场景：在复杂逻辑中，先插入或更新数据，然后再取出数据进行其他操作
+                 如：保持WBS及人员信息，然后再获取人员信息进行推送任务
+            </summary>
+            <param name="predicate">过滤表达式</param>
+            <returns>数据实体列表</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.GetPageable(NBlock.Core.ORM.PageInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},NBlock.Core.ORM.SearchCondition,System.Action{System.Linq.IQueryable{`0}})">
+            <summary>
+            获取指定搜索条件的数据分页实体
+            </summary>
+            <param name="pageInfo">分页信息</param>
+            <param name="predicate">编码方式的查询逻辑</param>
+            <param name="where">前台控件的值转化的查询条件</param>
+            <param name="summaryAction">自定义汇总的逻辑</param>
+            <returns>数据分页实体</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.GetPageable(NBlock.Core.ORM.PageInfo,NBlock.Core.ORM.SearchCondition,System.Action{System.Linq.IQueryable{`0}})">
+            <summary>
+            获取指定搜索条件的数据分页实体
+            </summary>
+            <param name="pageInfo">分页信息</param>
+            <param name="where">前台控件的值转化的查询条件</param>
+            <param name="summaryAction">自定义汇总的逻辑</param>
+            <returns>数据分页实体</returns>
+        </member>
+        <!-- 对于成员“M:NBlock.Core.ORM.EF.EFRepository`1.GetQueryableOfPageable(NBlock.Core.ORM.SearchCondition,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})”忽略有格式错误的 XML 注释 -->
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.GetTotal(NBlock.Core.ORM.SearchCondition,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取指定搜索条件的总记录数
+            </summary>
+            <param name="where">搜索条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.GetPage(NBlock.Core.ORM.PageInfo,NBlock.Core.ORM.SearchCondition,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取指定搜索条件的实体数据列表
+            </summary>
+            <param name="pageInfo">分页信息</param>
+            <param name="query">搜索条件</param>
+            <returns>实体数据列表</returns>
+        </member>
+        <member name="M:NBlock.Core.ORM.EF.EFRepository`1.IsExist(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获得指定条件的记录是否存在
+            </summary>
+            <returns>数据实体</returns>
+        </member>
+        <member name="P:NBlock.Core.ORM.EF.EFRepository`1.Context">
+            <summary>
+            数据库上下文对象
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.nbUserContext">
+            <summary>
+            当前登陆用户的相关API
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.nbUserContext.IsInRole(System.String)">
+            <summary>
+            判断当前用户是否在某个角色内
+            </summary>
+            <param name="roleCode">角色代码</param>
+            <returns>
+            	<c>true</c> if [is in role] [the specified role code]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NBlock.Core.nbUserContext.HasRight(System.String)">
+            <summary>
+            判断是否有权限
+            </summary>
+            <param name="rightCode">权限代码</param>
+            <returns>
+            	<c>true</c> if the specified right code has right; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:NBlock.Core.nbUserContext.Identity">
+            <summary>
+            当前登录账户的标识
+            </summary>
+            <value>The identity.</value>
+        </member>
+        <member name="P:NBlock.Core.nbUserContext.IsAuthenticated">
+            <summary>
+            判断是否经过认证
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.nbUserContext.CurrentUser">
+            <summary>
+            当前登录账户的完整信息
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.nbUserContext.UserIP">
+            <summary>
+            获取用户的IP
+            </summary>
+            <value>The user IP.</value>
+        </member>
+        <member name="P:NBlock.Core.nbUserContext.UserService">
+            <summary>
+            用户的相关服务
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ISearchConditionTranslator">
+            <summary>
+            查询条件转换器
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.ISearchConditionTranslator.Where``1(System.Linq.IQueryable{``0},NBlock.Core.ORM.SearchCondition)">
+            <summary>
+            将SearchCondition转化为Linq的Where条件
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <param name="table">查询对象</param>
+            <param name="where">查询条件</param>
+            <returns></returns>
+        </member>
+        <member name="T:NBlock.Core.Auth.nbAuthorizeAttribute">
+            <summary>
+            nb 是NBlock的简写，表明系统是由很多个积木块组成的。
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.Auth.nbAuthorizeAttribute.UsersSplit">
+            <summary>
+            允许的用户列表
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.Auth.nbAuthorizeAttribute.RolesSplit">
+            <summary>
+            允许的角色列表
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.Auth.nbAuthorizeAttribute.PagePrivilegeCode">
+            <summary>
+            允许的权限列表
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.PageInfo">
+            <summary>
+            分页信息
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.PageInfo.PageIndex">
+            <summary>
+            当前页面索引
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.PageInfo.PageSize">
+            <summary>
+            每页多少记录
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.PageInfo.SortName">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.PageInfo.SortOrder">
+            <summary>
+            排序规则，'asc' or 'desc'
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.PageInfo.SummaryItems">
+            <summary>
+            汇总信息
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.ORM.SummaryItem">
+            <summary>
+            汇总项
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.SummaryItem.Method">
+            <summary>
+            汇总方法，目前支持Sum，后续会支持Avg、Min、Max等
+            </summary>
+        </member>
+        <member name="P:NBlock.Core.ORM.SummaryItem.Member">
+            <summary>
+            汇总成员（字段），实体的属性名
+            </summary>
+        </member>
+        <member name="T:NBlock.Core.IPrivilegeService">
+            <summary>
+            权限服务接口
+            </summary>
+        </member>
+        <member name="M:NBlock.Core.IPrivilegeService.GetMenuPrivileges">
+            <summary>
+            获取菜单权限
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

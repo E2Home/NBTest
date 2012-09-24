@@ -1,0 +1,20 @@
+@model EnumItem
+@{  
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.ParentId)
+@Html.HiddenFor(m => m.ParentCode)
+@Html.HiddenFor(m => m.TypeId)
+@Html.nbTextBoxFor(m => m.EnumName).AjaxTodo(Url.Action("GetFirstChar"), "SetFirstChar").Required()
+@Html.nbDropDownListFor(m => m.TypeCode, "dictype").ReadOnly().Required()
+@Html.nbTextBoxFor(m => m.EnumCode).Required()
+@Html.nbTextBoxFor(m => m.SeqNo).Required()
+@Html.nbTextBoxFor(m => m.FirstChar).Required()
+@Html.nbTextAreaFor(m => m.Remark)
+<script type="text/javascript">
+    function SetFirstChar(data) {
+        if ($("#FirstChar").val() == "")
+            $("#FirstChar").val(data);
+    }
+</script>

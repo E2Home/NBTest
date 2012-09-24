@@ -1,0 +1,19 @@
+﻿@model Organization
+@{
+    Layout = "~/Views/Shared/_LayoutForm.cshtml"; 
+}
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.ParentId)
+@Html.HiddenFor(m => m.ParentCode)
+@Html.nbTextBoxFor(m => m.OrgName).AjaxTodo(Url.Action("GetFirstPY"), "SetOrgCode").Required()
+@Html.nbTextBoxFor(m => m.ParentName).ReadOnly()
+@Html.nbTextBoxFor(m => m.OrgCode).Required().Remote(@Url.Action("ValidOrgCode", new { Id = Model.Id }))
+@Html.nbEnumDropDownListFor(m => m.OrgTypeEnum)
+@Html.nbTextBoxFor(m => m.SeqNo).Number().Required()
+@Html.nbTextAreaFor(m => m.Remark)
+<script type="text/javascript">
+    function SetOrgCode(data) {
+        if ($("#OrgCode").val() == "")
+            $("#OrgCode").val(data);
+    }
+</script>

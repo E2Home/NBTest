@@ -1,0 +1,391 @@
+﻿html
+{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+body
+{
+    background: #fff;
+}
+.buttonpanel
+{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    background: #ccc url(images/flexigrid/tbg.gif) repeat-x 50% top;
+    border-top: #99bbe8 1px solid;
+    padding-left: 40%;
+    width: 60%;
+}
+a.button
+{
+    display: block;
+    border: none;
+    background: url(images/form/button1.gif) no-repeat left top;
+    height: 23px;
+    width: 60px;
+    margin: 4px;
+    vertical-align: middle;
+    text-align: center;
+    float: left;
+}
+
+a.button span
+{
+    display: block;
+    padding-top: 2px;
+}
+a.imgbtn span
+{
+    padding: 4px 4px 3px 21px;
+    cursor: pointer;
+}
+
+input
+{
+    border: solid 1px #3C7FB1;
+    padding: 1px 0px 0px 1px;
+    vertical-align: top;
+}
+.ie6 input
+{
+    padding: 1px 0px 0px 1px;
+}
+.ie6.hiddenselect select
+{
+    visibility: hidden;
+}
+
+/*********select********/
+
+.select *
+{
+    margin: 0;
+    padding: 0;
+}
+.select
+{
+    border: 1px solid #3C7FB1;
+    float: left;
+    display: inline;
+}
+.select div
+{
+    border: 1px solid #f9f9f9;
+    float: left;
+}
+/* 子选择器，在FF等非IE浏览器中识别 */
+.select > div
+{
+    width: 119px;
+    height: 17px;
+    overflow: hidden;
+}
+
+/* 通配选择符，只在IE浏览器中识别 */
+* html .select div select
+{
+    display: block;
+    float: left;
+    margin: -2px;
+}
+.select div > select
+{
+    display: block;
+    width: 124px;
+    float: none;
+    margin: -2px;
+    padding: 0px;
+}
+.select:hover
+{
+    /*border:1px solid #666666; */
+}
+.select select > option
+{
+    text-indent: 2px;
+}
+/********************/
+form
+{
+    margin: 0px;
+}
+input[type='text'], input[type='password']
+{
+    border: solid 1px #999;
+    height: 18px;
+    padding: 2px 3px;
+    background: #fff url("images/form/text-bg.gif") repeat-x left top;
+}
+input.readonly
+{
+    border: solid 1px #ccc; /*background:#f4f4f4;*/
+    color: #999;
+}
+input[type='checkbox']
+{
+    border: none;
+}
+input[type='radio']
+{
+    border: none !important;
+}
+textarea
+{
+    /*  border: solid 1px #907714;	  */
+    border: solid 1px #999;
+    background: #fff url("images/form/text-bg.gif") repeat-x left top;
+    overflow: auto;
+    height: 80px;
+    padding: 2px 3px;
+}
+fieldset
+{
+    border: none;
+    border-top: solid 1px #ccc;
+}
+.ellipsis
+{
+    white-space: nowrap;
+    text-overflow: ellipsis; /* for internet explorer */
+    overflow: hidden;
+    display: block;
+}
+html > body .ellipsis
+{
+    clear: both;
+}
+.mainpanel
+{
+    padding: 5px;
+}
+.mainpanel label
+{
+    font-weight: bolder;
+}
+table.xeasy-form
+{
+    background: #fff;
+    border-collapse: collapse;
+    empty-cells: show;
+}
+table.xeasy-form td
+{
+    word-break: break-all;
+    padding: 2px 0px;
+    vertical-align: top;
+}
+
+.xeasy-formItemMust
+{
+    color: red;
+    padding-left: 5px;
+}
+
+
+/* JQuery Validation */
+label.error
+{
+    padding: 2px 0 2px 20px;
+    display: block;
+    background: url(images/validation/exclamation.png) no-repeat 2px center;
+}
+input.error, select.error, textarea.error, input.cusErrorPanel, cusErrorPanel.cusErrorPanel, textarea.cusErrorPanel
+{
+    border: solid 1px #c30;
+    background: url("images/form/invalid_line.gif") repeat-x left bottom;
+}
+label.checked
+{
+    float: none;
+    position: relative;
+    padding: 0px 0 0px 18px;
+    background: url(images/validation/accept.png) no-repeat 2px center;
+}
+
+
+div.cusErrorPanel
+{
+    z-index: auto;
+    position: absolute;
+    width: 150px;
+    height: 35px;
+    overflow: hidden;
+    text-indent: 5px;
+    line-height: 40px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: url(images/validation/tooltop2.gif) no-repeat left top;
+}
+div.cusError
+{
+    z-index: auto;
+    position: absolute;
+    width: 280px;
+    height: 35px;
+    overflow: hidden;
+    text-indent: 5px;
+    line-height: 40px;
+    font-size: 12px;
+    font-family: Arial;
+    background: url(images/validation/tooltop.gif) no-repeat left top;
+}
+a.valiclose
+{
+    position: absolute;
+    right: 14px;
+    top: 10px;
+    line-height: 10px;
+    display: block;
+    height: 8px;
+    width: 8px;
+    background: url(images/icons/del.gif) no-repeat center center;
+}
+
+a.valiclose:hover
+{
+    opacity: .5;
+    -moz-opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+/* Pages Form */
+.pageForm
+{
+    display: block;
+    padding: 5px;
+}
+.pageFormContent
+{
+    display: block;
+}
+.pageFormContent div.unit
+{
+    display: block;
+    margin: 0;
+    padding: 5px 0;
+    position: relative;
+    clear: both;
+}
+.pageFormContent p
+{
+    float: left;
+    display: block;
+    width: 300px;
+    height: 21px;
+    margin: 0;
+    padding: 5px 0;
+    position: relative;
+}
+.pageFormContent p.nowrap
+{
+    height: auto;
+    width: 100%;
+    white-space: nowrap;
+    padding-bottom: 0px;
+}
+.pageFormContent .radioGroup
+{
+    float: left;
+    display: block;
+    overflow: hidden;
+}
+.pageFormContent label
+{
+    float: left;
+    width: 80px;
+    padding: 0 5px;
+    line-height: 21px;
+}
+.pageFormContent label.radioButton
+{
+    float: left;
+    width: auto;
+    padding: 0 10px 0 0;
+    line-height: 21px;
+}
+.pageFormContent label.CheckBox
+{
+    float: left;
+    width: 50px;
+    padding: 0 10px 0 0;
+    line-height: 21px;
+}
+.pageFormContent label.CheckBox input
+{
+    margin: 4px 5px 0px 0px;
+}
+.pageFormContent .textInput
+{
+    float: left;
+    width: 180px;
+    line-height: 20px;
+    height: 20px;
+}
+.pageFormContent .longtextInput
+{
+    float: left;
+    width: 480px;
+    line-height: 20px;
+}
+.pageFormContent select
+{
+    float: left;
+    height: 24px;
+    width: 188px;
+    border: 1px solid #999999;
+    background: url("images/form/text-bg.gif") repeat-x scroll left top #FFFFFF;
+}
+.pageFormContent .inputInfo
+{
+    padding: 0 5px;
+    line-height: 21px;
+}
+.pageFormContent span.unit, .pageFormContent a.unit
+{
+    padding: 0 5px;
+    line-height: 21px;
+}
+.pageFormContent span.info
+{
+    color: #7F7F7F;
+    display: block;
+    line-height: 21px;
+    float: left;
+}
+
+.pageFormDetailList
+{
+    display: block;
+    width: 100%;
+    padding-top: 5px;
+}
+
+/* 按钮输入框 */
+.buttonedit-input
+{
+    width: 160px !important;
+    padding-right: 23px !important;
+    padding-top: 2px !important;
+}
+
+.buttonedit
+{
+    height: 16px;
+    width: 16px;
+    background: url("images/icons/icon1.gif") no-repeat left top;
+    margin-left: -19px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: none;
+    line-height: 20px;
+}
+
+img.group
+{
+    background-image: url(images/icons/group.gif);
+}

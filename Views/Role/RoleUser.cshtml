@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+}
+@(Html.nbGridFor<UserRoleRelation>(s =>
+{
+    s.ID("UserInfoList");
+    s.Action(Url.Action("RoleUser", new { roleId = ViewBag.RoleId }));
+    s.layoutH(86);
+    s.Columns(c =>
+    {
+        c.Bind(m => m.Id).IsKey();
+        c.Bind(m => m.UserCode).Title("用户账号").AsQuery().Align(GridAlign.Left);
+        c.Bind(m => m.UserName).Title("用户名称").AsQuery().Align(GridAlign.Left);
+        //c.Bind(m => m.AccountState).Title("账号状态").EnumKey("AccountState").Width(60);
+        c.Bind(m => m.SeqNo).Title("排序号").Width(40);
+        c.Bind(m => m.UpdateUser).Title("更新人").Width(60);
+        c.BindDateTime(m => m.UpdateDate).Title("更新时间");
+        c.BindTemplate(60)
+            .Template(Url.GridRowDeleteLink("UserName", "RemoveRoleUser"));
+    });
+    s.Buttons(b =>
+    {
+        b.BindAddButton("添加用户").OnClick("AddUser");
+        b.BindDeleteButton("RemoveRoleUsers");
+    });
+}))
+<script type="text/javascript">
+    // 添加用户信息
+    function AddUser(id) {
+        OpenModalDialog('@Url.Action("ChooseUser", "Common", new { orgId = @ViewBag.OrgId, mode = 2 })', {
+            caption: "选择角色用户",
+            width: 430,
+            height: 250,
+            type: 2,
+            onclose: function (users) {
+                if (users && users.length > 0) {
+                    var userids = users.join(",");
+                    ajaxTodo('@Url.Action("AddRoleUser")', { "roleId": '@ViewBag.RoleId', "userids": userids }, refreshGrid);
+                }
+            }
+        });
+    }
+</script>

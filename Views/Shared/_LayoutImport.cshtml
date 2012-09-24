@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.Css("main", "form")
+    <style>
+        .download
+        {
+            color: red !important;
+            text-decoration: underline !important;
+        }
+        .msg, .note
+        {
+            display: block;
+            float: left;
+            width: 100%;
+        }
+        
+        .msg p.nowrap, .note p.nowrap
+        {
+            padding: 10px 0px 0px 0px;
+        }
+        
+        .msg ol, .note ol
+        {
+            margin: 0px;
+            padding-left: 25px;
+        }
+        
+        .msg ol li, .note ol li
+        {
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    @Html.Js("jquery")
+    <div style="padding: 10px 20px; max-width: 700px;" class="pageFormContent">
+        <div class="unit" style="padding: 0px">
+            数据信息导入 <span style="float: right"><a href="@Url.Content(ViewBag.TemplateUrl)" class="download">
+                下载Excel模板</a></span>
+        </div>
+        <div class="divider">
+        </div>
+        @using (Html.nbAjaxImportBeginForm())
+        {
+            @Html.Hidden("ExcelKey");
+            <p class="nowrap">
+                <label>
+                    更新方式：</label>
+                <label class="CheckBox" style="width: 200px">
+                    <input type="radio" value="Override" name="UpdateMode" checked="checked">更新已存在的数据</label>
+                <label class="CheckBox" style="width: 200px">
+                    <input type="radio" value="Skip" name="UpdateMode">不更新已存在的数据</label></p>
+            <p class="nowrap">
+                <label for="file">
+                    选择文件：</label>
+                <input name="file" type="file" />
+            </p>
+        }
+        <div class="divider">
+        </div>
+        <div style="width: 150px; margin: 0px auto;">
+            <a href="javascript:void(0);" class="button" id="btnSave"><span>导&#12288;入</span></a>
+            <a href="javascript:CloseModalDialog(null, false);" class="button" id="btnCancel"><span>
+                取&#12288;消</span></a>
+        </div>
+        <div id="note" class="note">
+            <p class="nowrap">
+                注意事项：</p>
+            <div class="divider">
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>
+@Html.Js("common", "ajaxform")
+<script type="text/javascript">
+    $(document).ready(function () {
+        var options = {
+            iframe: true,
+            dataType: 'json',
+            success: processJson,
+            beforeSubmit: validate
+        };
+        $('form').submit(function () {
+            $(this).ajaxSubmit(options);
+            return false;
+        });
+
+        // 保存按钮事件
+        $("#btnSave").click(function (e) {
+            $('form').submit();
+            return false;
+        });
+
+        function processJson(data) {
+            if (data.IsSuccess) {
+                CloseModalDialog(null, true);
+            }
+            else {
+                showErrorTip(data.Msg, { left: 10, top: 10 }, true, 5000);
+            }
+        }
+
+        function validate(formData, jqForm, options) {
+            if (jqForm[0].file.value == "") {
+                alert("请选择需要导入数据的Excel文件！");
+                return false;
+            }
+        }
+    });
+</script>

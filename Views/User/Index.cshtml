@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTree.cshtml";
+    ViewBag.LeftTitle = "组织结构";
+}
+@section Left{
+    @(Html.nbTree(s =>
+    {
+        s.Action("OrgTree");
+        s.layoutH(30);
+        s.Width(200);
+        s.Sync(false);
+        s.Grid("orgId", "");
+    }))
+}
+@section Right{
+    @(Html.nbGridFor<UserInfo>(s =>
+    {
+        s.layoutW(208);
+        s.layoutH(114);
+        s.Columns(c =>
+        {
+            c.Bind(m => m.Id).IsKey();
+            c.Bind(m => m.UserCode).AsQuery().AsSearch().Align(GridAlign.Left);
+            c.Bind(m => m.UserName).AsQuery().AsSearch().Align(GridAlign.Left);
+            c.Bind(m => m.OrgName).AsSearch().Width(100).Align(GridAlign.Left);
+            c.Bind(m => m.AccountState).EnumKey<AccountState>().AsSearch().Width(60);
+            c.Bind(m => m.SeqNo).Width(40);
+            c.Bind(m => m.UpdateUser).Width(60);
+            c.BindDateTime(m => m.UpdateDate).AsSearch();
+            c.BindTemplate(180)
+                .Template(Url.GridRowEditLink("编辑用户"))
+                .Template(Url.GridRowDeleteLink("UserName"))
+                .Template(@<a href="@Url.AajxTodo(Url.Action("SetUserState", new { Id = "${Id}" }), "您确认要禁用用户（${UserName}）吗？")" class="imgbtn2"><span
+                    class="setuser">停用</span></a>);
+
+        });
+        s.Buttons(b =>
+        {
+            b.BindAddButton("新建用户").Action(Url.Action("Edit", new { orgId = "{TreeId}" }));
+            b.BindDeleteButton();
+            b.Bind(GridButtonType.Import, "导入用户").Action(Url.Action("Import", new { excelKey = "User" }));
+        });
+    }))
+}

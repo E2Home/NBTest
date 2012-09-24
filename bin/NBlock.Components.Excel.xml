@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NBlock.Components.Excel</name>
+    </assembly>
+    <members>
+        <member name="T:NBlock.Components.Excel.IExcelImporter">
+            <summary>
+            Excel导入接口
+            </summary>
+        </member>
+        <member name="M:NBlock.Components.Excel.IExcelImporter.Import(System.Web.HttpPostedFileBase,System.String)">
+            <summary>
+            从Excel中导入数据，读取excel，默认第一行的书签内容为表头
+            </summary>
+            <param name="excelFile">excel文件</param>
+            <param name="excelKey">数据导入注册的Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Components.Excel.IExcelImporter.GetExcelTemplateUrl(System.String)">
+            <summary>
+            获取指定Key的模板文件路径
+            </summary>
+            <param name="excelKey">数据导入注册的Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Components.Excel.NPOIImporter.Import(System.Web.HttpPostedFileBase,System.String)">
+            <summary>
+            从Excel中导入数据，读取excel，默认第一行的书签内容为表头
+            </summary>
+            <param name="excelFile">excel文件</param>
+            <param name="excelKey">数据导入注册的Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Components.Excel.NPOIImporter.GetTemplate(System.String)">
+            <summary>
+            获取指定Key的模板导入的相关配置信息
+            </summary>
+            <param name="excelKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Components.Excel.NPOIImporter.GetCellValue(NPOI.SS.UserModel.ISheet,System.Int32,System.Int32)">
+            <summary>
+            获取指定单元格的值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Components.Excel.NPOIImporter.GetCellValue(NPOI.SS.UserModel.IRow,System.Int32)">
+            <summary>
+            获取指定单元格的值
+            </summary>
+            <param name="row"></param>
+            <param name="colIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Components.Excel.NPOIImporter.GetValue(NBlock.Components.Excel.CellInfo,System.String)">
+            <summary>
+            根据配置文件获取值
+            </summary>
+            <param name="cellinfo"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Components.Excel.NPOIImporter.GetCellInfo(NPOI.SS.UserModel.ICell)">
+            <summary>
+            获取单元格的信息
+            </summary>
+            <param name="cell"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Components.Excel.NPOIImporter.ParseComment(System.String)">
+            <summary>
+            备注信息以回车为分隔符！键值对以：为分隔符
+            </summary>
+            <param name="comment"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NBlock.Components.Excel.ExcelException">
+            <summary>
+            Excel组件引发的异常
+            </summary>
+        </member>
+        <member name="M:NBlock.Components.Excel.ExcelException.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:NBlock.Components.Excel.ExcelException.#ctor(System.String)">
+            <summary>
+            异常构造函数
+            </summary>
+            <param name="message">异常的消息</param>
+        </member>
+        <member name="M:NBlock.Components.Excel.ExcelException.#ctor(System.String,System.Exception)">
+            <summary>
+            异常构造函数
+            </summary>
+            <param name="message">异常的消息</param>
+            <param name="inner">内部的异常</param>
+        </member>
+        <member name="M:NBlock.Components.Excel.ExcelException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            异常构造函数
+            </summary>
+            <param name="info">存有有关所引发异常的序列化的对象数据</param>
+            <param name="context">包含有关源或目标的上下文信息</param>
+        </member>
+        <member name="T:NBlock.Components.Excel.ExcelTemplate">
+            <summary>
+            Excel的模板配置信息
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ExcelTemplate.Metadata">
+            <summary>
+            模板的元数据，描述了注册的Key、模板的路径等信息
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ExcelTemplate.Once">
+            <summary>
+            只需要一次导入的数据
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ExcelTemplate.Repeats">
+            <summary>
+            需要循环导入的数据
+            </summary>
+        </member>
+        <member name="T:NBlock.Components.Excel.OnceImport">
+            <summary>
+            表示只需要一次导入的数据
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.OnceImport.Cells">
+            <summary>
+            单元格
+            </summary>
+        </member>
+        <member name="T:NBlock.Components.Excel.RepeatImport">
+            <summary>
+            表示需要循环导入的数据，EndCode属性表示循环终止的字符。
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.RepeatImport.Cells">
+            <summary>
+            单元格
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.RepeatImport.StartRowIndex">
+            <summary>
+            循环的开始行号
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.RepeatImport.StartColIndex">
+            <summary>
+            循环的开始列号
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.RepeatImport.EndCode">
+            <summary>
+            结束标识
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.RepeatImport.DetailName">
+            <summary>
+            字表名称
+            </summary>
+        </member>
+        <member name="T:NBlock.Components.Excel.CellInfo">
+            <summary>
+            单元格信息
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.CellInfo.RowIndex">
+            <summary>
+            行索引值
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.CellInfo.ColIndex">
+            <summary>
+            列索引值
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.CellInfo.FieldName">
+            <summary>
+            对应的字段名称
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.CellInfo.Name">
+            <summary>
+            中文名称
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.CellInfo.EnumKey">
+            <summary>
+            枚举Key
+            </summary>
+        </member>
+        <member name="T:NBlock.Components.Excel.IExcelStorage">
+            <summary>
+            Excel模板信息的存储接口
+            </summary>
+        </member>
+        <member name="M:NBlock.Components.Excel.IExcelStorage.GetMetadataByKey(System.String)">
+            <summary>
+            获取指定Key的模板元数据
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NBlock.Components.Excel.ExcelMetadata">
+            <summary>
+            模板元数据
+            </summary>
+        </member>
+        <member name="M:NBlock.Components.Excel.Extensions.ToEntity``1(NBlock.Components.Excel.ImportRow,``0)">
+            <summary>
+            将导入数据行转化为对应的实体
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="row"></param>
+            <param name="entity">实体对象，默认为Null</param>
+            <returns></returns>
+        </member>
+        <member name="M:NBlock.Components.Excel.Extensions.CreateEntity``1(``0,System.Func{System.String,System.String})">
+            <summary>
+            根据赋值表达式创建一个新的实体对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="GetValue"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NBlock.Components.Excel.ExcelData">
+            <summary>
+            Excel导入的信息
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ExcelData.OnceData">
+            <summary>
+            一次导入的数据，key就是field，一个ImportCellDesc描述了一个单元格（field,value,单元格名称）
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ExcelData.RepeatData">
+            <summary>
+            重复导入的数据，如果只有一个循环导入的数据，就用该属性，否则就用RepeatDatas获取多个循环导入的数据
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ExcelData.RepeatDatas">
+            <summary>
+            重复导入的数据集合
+            </summary>
+        </member>
+        <member name="M:NBlock.Components.Excel.ImportRow.GetValue(System.String)">
+            <summary>
+            获取指定字段的值
+            </summary>
+            <param name="fieldName">字段名称</param>
+            <returns>值</returns>
+        </member>
+        <member name="P:NBlock.Components.Excel.ImportRow.Cells">
+            <summary>
+            单元格的信息
+            </summary>
+        </member>
+        <member name="T:NBlock.Components.Excel.ImportCellDesc">
+            <summary>
+            单元格的描述信息，数据格式校验时，可以精确定位到某个单元格。
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ImportCellDesc.Cell">
+            <summary>
+            单元格的配置信息
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ImportCellDesc.RowIndex">
+            <summary>
+            行索引值
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ImportCellDesc.ColIndex">
+            <summary>
+            列索引值
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ImportCellDesc.FieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:NBlock.Components.Excel.ImportCellDesc.FieldValue">
+            <summary>
+            字段值
+            </summary>
+        </member>
+        <member name="T:NBlock.Components.Excel.ExcelConstant">
+            <summary>
+            常量定义类
+            </summary>
+        </member>
+        <member name="F:NBlock.Components.Excel.ExcelConstant.DEFAULT_DETAIL_NAME">
+            <summary>
+            默认子表的名称
+            </summary>
+        </member>
+    </members>
+</doc>

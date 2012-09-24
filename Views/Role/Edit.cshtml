@@ -1,0 +1,15 @@
+﻿@model Role
+@{
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+@Html.HiddenFor(m => m.Id)
+@Html.nbTextBoxFor(m => m.RoleName).AjaxTodo(Url.Action("GetRoleCode"), "SetCode")
+@Html.nbTextBoxFor(m => m.RoleCode)
+@Html.nbTextBoxFor(m => m.SeqNo)
+@Html.nbTextAreaFor(m => m.Remark)
+<script type="text/javascript">
+    function SetCode(data) {
+        if ($("#RoleCode").val() == "")
+            $("#RoleCode").val(data);
+    }
+</script>

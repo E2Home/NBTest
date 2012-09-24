@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.Css("main")
+</head>
+<body style="background: #dfe8f6; overflow: hidden;">
+    @Html.Js("jquery")
+    <div style="background-color: #FFFFFF; border: 1px solid #999999; margin: 5px 4px 0 4px;
+        overflow: auto;">
+        @RenderBody()
+    </div>
+    <div style="position: absolute; left: 50px;">
+        <a id="btnOk" class="button" href="javascript:void(0);"><span>确 定</span></a> <a id="btnCancel"
+            class="button" href="javascript:CloseModalDialog(null, false);"><span>取 消</span></a>
+    </div>
+</body>
+</html>
+@Html.Js("common")
+@RenderSection("Script", false)

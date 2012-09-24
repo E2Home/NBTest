@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+}
+@(Html.nbTree(s =>
+{
+    s.layoutH(38);
+    s.Action("OrgTree");
+}))
+@Html.Css("form", "tree")
+@Html.Js("common", "tree")
+<style type="text/css">
+    @*  在选中节点的文本后面显示打钩图标 *@
+    .bbit-tree-selected a span
+    {
+        padding-right:20px;
+        background:url("@Url.Content("~/Content/themes/Blue/Images/icons/check.png")") no-repeat right center;	
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        // 设置默认选中的值
+        setTimeout(function () {
+            var nodeId = share.data("selectNodeId");
+            share.removeData("selectNodeId");
+            if (!$.isEmpty(nodeId)) {
+                $("div.treeview").clickTreeNode(nodeId);
+            }
+        }, 10);
+
+        // 注册确定按钮事件
+        $("#btnOk").click(function () {
+            var node = $("div.treeview").getTCT();
+            CloseModalDialog(null, true, [node]);
+        });
+    })             
+</script>

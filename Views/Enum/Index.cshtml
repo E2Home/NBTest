@@ -1,0 +1,48 @@
+﻿@{  
+    Layout = "~/Views/Shared/_LayoutTree.cshtml";
+    ViewBag.LeftTitle = "枚举分类";
+    ViewBag.RightTitle = "枚举项列表";
+}
+@section Left{
+    @(Html.nbTree(s =>
+    {
+        s.Action("Tree");
+        s.layoutH(30);
+        s.Width(200);
+        s.Sync(false);
+        s.Grid("Type");
+    }))
+}
+@section Right{
+    @(Html.nbGridFor<EnumItem>(s =>
+    {
+        s.layoutW(208);
+        s.layoutH(114);
+        s.Columns(c =>
+        {
+            c.Bind(m => m.Id).IsKey();
+            c.Bind(m => m.EnumCode).Width(80).Align(GridAlign.Left).AsQuery();
+            c.Bind(m => m.EnumName).Align(GridAlign.Left).AsQuery();
+            c.Bind(m => m.FirstChar).Width(80).AsQuery();
+            c.Bind(m => m.SeqNo).Width(40);
+            c.Bind(m => m.Remark).Align(GridAlign.Left).Width("auto");
+            c.Bind(m => m.UpdateUser).Width(60);
+            c.BindDateTime(m => m.UpdateDate);
+            c.BindTemplate(190)
+            .Template(Url.GridRowEditLink("编辑枚举项"))
+            .Template(Url.GridRowDeleteLink("EnumName"))
+            .Template(@<a class="imgbtn2" href="@Url.OpenDialog(Url.Action("SubItem", new { parentId = "${Id}" }), "子枚举项列表（${EnumName}）", new { width = 850 })"><span
+                class="Add">添加子枚举</span></a>);
+        });
+        s.Buttons(b =>
+        {
+            b.BindAddButton("新建枚举项").Action(Url.Action("Edit", new { parentId = "{TreeId}" }));
+            b.BindDeleteButton();
+            b.Bind(GridButtonType.Import, "导入枚举项").Action(Url.Action("Import", new { excelKey = "Enum" }));
+        });
+    }))
+}
+@section LeftButton{
+    <a style="float: right; margin: 2px 5px" class="linkbtn" id="btnAddEnumType" href="@Url.OpenDialog(Url.Action("EnumType"), "枚举类型", new { width = 700 })">
+        <span class="Add">管理</span></a>
+}

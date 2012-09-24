@@ -1,0 +1,18 @@
+﻿@model EnumType
+@{  
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+    ViewBag.SaveAction = "SaveEnumType";
+}
+@Html.HiddenFor(m => m.Id)
+@Html.nbTextBoxFor(m => m.TypeName).AjaxTodo(Url.Action("GetTypeCode"), "SetTypeCode").Required()
+@Html.nbTextBoxFor(m => m.TypeCode).Required()
+@Html.nbTextBoxFor(m => m.SeqNo).Required()
+@Html.nbTextAreaFor(m => m.Remark)
+<script type="text/javascript">
+    function SetTypeCode(data) {
+        var $Code = $("#TypeCode");
+        if (data && $Code.val() == "") {
+            $Code.val(data);
+        }
+    }
+</script>

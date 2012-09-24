@@ -1,0 +1,14 @@
+﻿@model Privilege
+@{
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.ParentId)
+@Html.HiddenFor(m => m.ParentCode)
+@Html.nbTextBoxFor(m => m.PrivilegeName).Required()
+@Html.nbTextBoxFor(m => m.ParentName).ReadOnly()
+@Html.nbTextBoxFor(m => m.PrivilegeCode).Required()
+@Html.nbEnumDropDownListFor(m => m.PrivilegeTypeEnum).Required()
+@Html.nbTextBoxFor(m => m.Url)
+@Html.nbTextBoxFor(m => m.SeqNo).Number().Required()
+@Html.nbTextAreaFor(m => m.Remark)
